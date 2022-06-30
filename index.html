@@ -57,18 +57,25 @@
   }
   
   function notifSet () {
-    if (!("Notification" in window))
-      alert ("Ваш браузер не поддерживает уведомления.");
-    else if (Notification.permission === "granted")
-      setTimeout(notifyMe, 3000);
-    else if (Notification.permission === "denied" || Notification.permission === "default") {
+    if (permission === "granted") {setTimeout(notifyMe, 3000);}
+    else {
       Notification.requestPermission (function (permission) {
-        if (!('permission' in Notification))
-          Notification.permission = permission;
-        if (permission === "granted")
-          setTimeout(notifyMe, 3000);
+        Notification.permission = permission;
       });
     }
+
+    // if (!("Notification" in window))
+    //   alert ("Ваш браузер не поддерживает уведомления.");
+    // else if (Notification.permission === "granted")
+    //   setTimeout(notifyMe, 3000);
+    // else if (Notification.permission === "denied" || Notification.permission === "default") {
+    //   Notification.requestPermission (function (permission) {
+    //     if (!('permission' in Notification))
+    //       Notification.permission = permission;
+    //     if (permission === "granted")
+    //       setTimeout(notifyMe, 3000);
+    //   });
+    // }
   }
 </script>
 </body>
